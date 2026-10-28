@@ -1,0 +1,80 @@
+== ML-KEM-512
+   keygen  n=300  mean=6132 us  stack=6768 B  heap=200 B  fails=0  (2 s)
+   encaps  n=300  mean=6871 us  stack=9376 B  heap=200 B  fails=0  (3 s)
+   decaps  n=300  mean=8111 us  stack=10128 B  heap=200 B  fails=0  (3 s)
+   check {'trials': 10, 'roundtrip_ok': 10, 'tampered_ct_rejected': 10, 'errors': 0}
+== ML-KEM-768
+   keygen  n=300  mean=9989 us  stack=10864 B  heap=200 B  fails=0  (4 s)
+   encaps  n=300  mean=11190 us  stack=13984 B  heap=200 B  fails=0  (4 s)
+   decaps  n=300  mean=12786 us  stack=15056 B  heap=200 B  fails=0  (4 s)
+   check {'trials': 10, 'roundtrip_ok': 10, 'tampered_ct_rejected': 10, 'errors': 0}
+== ML-KEM-1024
+   keygen  n=300  mean=15922 us  stack=16000 B  heap=200 B  fails=0  (5 s)
+   encaps  n=300  mean=17396 us  stack=19616 B  heap=200 B  fails=0  (6 s)
+   decaps  n=300  mean=19533 us  stack=21168 B  heap=200 B  fails=0  (6 s)
+   check {'trials': 10, 'roundtrip_ok': 10, 'tampered_ct_rejected': 10, 'errors': 0}
+== ML-DSA-44
+   keygen  n=300  mean=22085 us  stack=38928 B  heap=200 B  fails=0  (7 s)
+   sign    n=157  mean=63707 us  stack=52400 B  heap=208 B  fails=0  (10 s)
+   verify  n=300  mean=22196 us  stack=36624 B  heap=200 B  fails=0  (7 s)
+   check {'trials': 10, 'valid_sig_ok': 10, 'bad_sig_rejected': 10, 'bad_msg_rejected': 10, 'errors': 0}
+== ML-DSA-65
+   keygen  n=259  mean=38718 us  stack=61456 B  heap=200 B  fails=0  (11 s)
+   sign    n=108  mean=93332 us  stack=80048 B  heap=208 B  fails=0  (10 s)
+   verify  n=267  mean=37587 us  stack=58160 B  heap=200 B  fails=0  (11 s)
+   check {'trials': 10, 'valid_sig_ok': 10, 'bad_sig_rejected': 10, 'bad_msg_rejected': 10, 'errors': 0}
+== ML-DSA-87
+   keygen  n=152  mean=65988 us  stack=98320 B  heap=200 B  fails=0  (10 s)
+   sign    FAILED: board rebooted during: BENCH 5 sign 10 300 10000
+   verify  n=154  mean=65228 us  stack=93264 B  heap=200 B  fails=0  (10 s)
+   check {'trials': 10, 'valid_sig_ok': 10, 'bad_sig_rejected': 10, 'bad_msg_rejected': 10, 'errors': 0}
+== Falcon-512
+   keygen  n=10   mean=1675340 us  stack=18496 B  heap=208 B  fails=0  (19 s)
+   sign    n=24   mean=431200 us  stack=43760 B  heap=208 B  fails=0  (12 s)
+   verify  n=300  mean=4957 us  stack=5264 B  heap=208 B  fails=0  (4 s)
+   check {'trials': 10, 'valid_sig_ok': 10, 'bad_sig_rejected': 10, 'bad_msg_rejected': 10, 'errors': 0}
+== SPHINCS+-SHA2-128f
+   keygen  n=62   mean=163369 us  stack=3264 B  heap=80 B  fails=0  (11 s)
+   sign    n=5    mean=3824141 us  stack=2752 B  heap=80 B  fails=0  (27 s)
+   verify  n=44   mean=230891 us  stack=2768 B  heap=80 B  fails=0  (15 s)
+   check {'trials': 10, 'valid_sig_ok': 10, 'bad_sig_rejected': 10, 'bad_msg_rejected': 10, 'errors': 0}
+== SPHINCS+-SHA2-128s
+   keygen  n=3    mean=15473679 us  stack=3536 B  heap=80 B  fails=0  (77 s)
+   sign    n=3    mean=119593579 us  stack=2832 B  heap=80 B  fails=0  (613 s)
+   verify  n=83   mean=120780 us  stack=2256 B  heap=80 B  fails=0  (146 s)
+   check {'trials': 2, 'valid_sig_ok': 2, 'bad_sig_rejected': 2, 'bad_msg_rejected': 2, 'errors': 0}
+== RSA-2048 (OAEP)
+   keygen  n=5    mean=4256600 us  stack=1296 B  heap=3448 B  fails=0  (27 s)
+   encaps  n=300  mean=1440 us  stack=1072 B  heap=3196 B  fails=0  (3 s)
+   decaps  n=41   mean=249575 us  stack=2336 B  heap=6268 B  fails=0  (13 s)
+   check {'trials': 3, 'roundtrip_ok': 3, 'tampered_ct_rejected': 3, 'errors': 0}
+== RSA-2048 (PKCS1v1.5)
+   keygen  n=5    mean=4630052 us  stack=1296 B  heap=3368 B  fails=0  (36 s)
+   sign    n=43   mean=237410 us  stack=1296 B  heap=7044 B  fails=0  (12 s)
+   verify  n=300  mean=1154 us  stack=720 B  heap=1280 B  fails=0  (4 s)
+   check {'trials': 3, 'valid_sig_ok': 3, 'bad_sig_rejected': 3, 'bad_msg_rejected': 3, 'errors': 0}
+== ECDH P-256
+   keygen  n=121  mean=83269 us  stack=1872 B  heap=1968 B  fails=0  (11 s)
+   encaps  n=34   mean=295497 us  stack=1856 B  heap=2280 B  fails=0  (11 s)
+   decaps  n=49   mean=208280 us  stack=1792 B  heap=1924 B  fails=0  (11 s)
+   check {'trials': 10, 'roundtrip_ok': 10, 'tampered_ct_rejected': 10, 'errors': 0}
+== X25519 (mbedtls)
+   keygen  n=48   mean=211432 us  stack=1184 B  heap=888 B  fails=0  (11 s)
+   encaps  n=24   mean=428288 us  stack=1248 B  heap=1028 B  fails=0  (11 s)
+   decaps  n=47   mean=216117 us  stack=1312 B  heap=804 B  fails=0  (11 s)
+   check {'trials': 10, 'roundtrip_ok': 10, 'tampered_ct_rejected': 10, 'errors': 0}
+== X25519 (libsodium)
+   keygen  n=300  mean=8766 us  stack=1392 B  heap=0 B  fails=0  (3 s)
+   encaps  n=300  mean=25239 us  stack=1552 B  heap=0 B  fails=0  (8 s)
+   decaps  n=300  mean=15904 us  stack=1104 B  heap=0 B  fails=0  (5 s)
+   check {'trials': 10, 'roundtrip_ok': 10, 'tampered_ct_rejected': 10, 'errors': 0}
+== ECDSA P-256
+   keygen  n=115  mean=87289 us  stack=1808 B  heap=1948 B  fails=0  (11 s)
+   sign    n=105  mean=95725 us  stack=2640 B  heap=1408 B  fails=0  (11 s)
+   verify  n=33   mean=309665 us  stack=2352 B  heap=2960 B  fails=0  (11 s)
+   check {'trials': 10, 'valid_sig_ok': 10, 'bad_sig_rejected': 10, 'bad_msg_rejected': 10, 'errors': 0}
+== Ed25519 (libsodium)
+   keygen  n=300  mean=9884 us  stack=1696 B  heap=0 B  fails=0  (4 s)
+   sign    n=300  mean=12356 us  stack=1968 B  heap=0 B  fails=0  (4 s)
+   verify  n=300  mean=18837 us  stack=3584 B  heap=0 B  fails=0  (6 s)
+   check {'trials': 10, 'valid_sig_ok': 10, 'bad_sig_rejected': 10, 'bad_msg_rejected': 10, 'errors': 0}

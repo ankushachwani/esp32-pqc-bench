@@ -1,0 +1,5 @@
+pio PlatformIO Core, version 6.2.0
+platform espressif32 7.1.3
+framework-arduinoespressif32 4.20017.260907+sha.dcc1105b
+   text	   data	    bss	    dec	    hex	filename
+ 487153	 146528	  37161	 670842	  a3c7a	firmware/.pio/build/esp32dev/firmware.elf

@@ -1,0 +1,13 @@
+cpu_mhz=240
+reset_reason=1
+idf=v4.4.7-dirty
+mbedtls=2.28.7
+libsodium=1.0.12-idf
+compiler=8.4.0
+free_heap=138836
+largest_block=81908
+worker_stack=106484
+rng=esp_fill_random
+trigger_pin=-1
+msg_len=64
+budget_s=10 min_iter=10 max_iter=300 seed=0

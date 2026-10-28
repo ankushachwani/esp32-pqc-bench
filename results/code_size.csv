@@ -1,0 +1,16 @@
+component,code_bytes,rodata_bytes,static_ram_bytes,note
+ML-KEM-512,5120,256,0,PQClean objects of this scheme only; the hash code below is shared
+ML-KEM-768,5326,256,0,PQClean objects of this scheme only; the hash code below is shared
+ML-KEM-1024,6266,256,0,PQClean objects of this scheme only; the hash code below is shared
+ML-DSA-44,7757,1024,0,PQClean objects of this scheme only; the hash code below is shared
+ML-DSA-65,7150,1024,0,PQClean objects of this scheme only; the hash code below is shared
+ML-DSA-87,7550,1024,0,PQClean objects of this scheme only; the hash code below is shared
+Falcon-512,45473,29764,0,PQClean objects of this scheme only; the hash code below is shared
+SPHINCS+-SHA2-128f,5001,0,0,PQClean objects of this scheme only; the hash code below is shared
+SPHINCS+-SHA2-128s,5553,0,0,PQClean objects of this scheme only; the hash code below is shared
+RSA-2048,16902,3638,4,"mbedtls/libsodium objects pulled in by the benchmark: rsa, rsa_internal, bignum, esp_bignum, oid, md, constant_time"
+ECDH/ECDSA P-256 + X25519 (mbedtls),26346,3208,44,"mbedtls/libsodium objects pulled in by the benchmark: ecp, ecp_curves, ecdh, ecdsa, bignum, esp_bignum, asn1parse, asn1write, hmac_drbg, md, constant_time"
+Ed25519 (libsodium),43230,32922,16,"mbedtls/libsodium objects pulled in by the benchmark: ed25519_ref10, hash_sha512_cp, sign, crypto_sign, keypair, open, verify, utils"
+X25519 (libsodium),7230,224,12,"mbedtls/libsodium objects pulled in by the benchmark: x25519_ref10, scalarmult_curve25519"
+"fips202 (SHAKE, shared by ML-KEM, ML-DSA, Falcon)",13550,192,0,PQClean common/
+sha2 (shared by SPHINCS+-SHA2),12665,32,0,PQClean common/

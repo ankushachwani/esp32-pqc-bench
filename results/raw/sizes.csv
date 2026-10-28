@@ -1,0 +1,17 @@
+alg,kind,family,pqc,pk,sk,ct,sig_max
+ML-KEM-512,kem,lattice,1,800,1632,768,0
+ML-KEM-768,kem,lattice,1,1184,2400,1088,0
+ML-KEM-1024,kem,lattice,1,1568,3168,1568,0
+ML-DSA-44,sig,lattice,1,1312,2560,0,2420
+ML-DSA-65,sig,lattice,1,1952,4032,0,3309
+ML-DSA-87,sig,lattice,1,2592,4896,0,4627
+Falcon-512,sig,lattice,1,897,1281,0,752
+SPHINCS+-SHA2-128f,sig,hash,1,32,64,0,17088
+SPHINCS+-SHA2-128s,sig,hash,1,32,64,0,7856
+RSA-2048 (OAEP),kem,rsa,0,259,640,256,256
+RSA-2048 (PKCS1v1.5),sig,rsa,0,259,640,256,256
+ECDH P-256,kem,ecc,0,65,32,65,0
+X25519 (mbedtls),kem,ecc,0,32,32,32,0
+X25519 (libsodium),kem,ecc,0,32,32,32,0
+ECDSA P-256,sig,ecc,0,65,32,0,72
+Ed25519 (libsodium),sig,ecc,0,32,64,0,64

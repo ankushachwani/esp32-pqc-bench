@@ -1,0 +1,17 @@
+alg,trials,valid_ok,tamper_rejected,tamper2_rejected,errors,what
+ML-KEM-512,10,10,10,,0,shared secrets equal; modified ciphertext gives error or different secret
+ML-KEM-768,10,10,10,,0,shared secrets equal; modified ciphertext gives error or different secret
+ML-KEM-1024,10,10,10,,0,shared secrets equal; modified ciphertext gives error or different secret
+ML-DSA-44,10,10,10,10,0,valid sig verifies; flipped sig byte rejected; flipped message byte rejected
+ML-DSA-65,10,10,10,10,0,valid sig verifies; flipped sig byte rejected; flipped message byte rejected
+ML-DSA-87,10,10,10,10,0,valid sig verifies; flipped sig byte rejected; flipped message byte rejected; signature made off-board
+Falcon-512,10,10,10,10,0,valid sig verifies; flipped sig byte rejected; flipped message byte rejected
+SPHINCS+-SHA2-128f,10,10,10,10,0,valid sig verifies; flipped sig byte rejected; flipped message byte rejected
+SPHINCS+-SHA2-128s,2,2,2,2,0,valid sig verifies; flipped sig byte rejected; flipped message byte rejected
+RSA-2048 (OAEP),3,3,3,,0,shared secrets equal; modified ciphertext gives error or different secret
+RSA-2048 (PKCS1v1.5),3,3,3,3,0,valid sig verifies; flipped sig byte rejected; flipped message byte rejected
+ECDH P-256,10,10,10,,0,shared secrets equal; modified ciphertext gives error or different secret
+X25519 (mbedtls),10,10,10,,0,shared secrets equal; modified ciphertext gives error or different secret
+X25519 (libsodium),10,10,10,,0,shared secrets equal; modified ciphertext gives error or different secret
+ECDSA P-256,10,10,10,10,0,valid sig verifies; flipped sig byte rejected; flipped message byte rejected
+Ed25519 (libsodium),10,10,10,10,0,valid sig verifies; flipped sig byte rejected; flipped message byte rejected
