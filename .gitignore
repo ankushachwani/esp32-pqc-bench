@@ -11,3 +11,5 @@ bin/
 
 __pycache__
 testcases/
+firmware/.pio/
+__pycache__/
