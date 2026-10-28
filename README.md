@@ -4,6 +4,20 @@ This repo is a clone of [PQClean](https://github.com/PQClean/PQClean) with a ben
 
 PQClean is retired and archived (its README has the notice and points to mlkem-native, mldsa-native, slhdsa-c and liboqs for maintained code). I used it anyway because the `clean` C implementations are plain portable C with no assembly, which is what I wanted for a first, honest baseline on Xtensa. Anything I say about speed is about this C code compiled with gcc 8.4 at -O3. It says little about what a tuned ESP32 implementation could do.
 
+## Summary
+
+Measured on one ESP32 (240 MHz, no PSRAM), using the plain-C PQClean implementations:
+
+- A full ML-KEM-768 key exchange (keygen, encaps, decaps) takes 34 ms. That is faster than mbedtls ECDH P-256 (587 ms) and libsodium X25519 (50 ms). The cost is size: 1088-byte ciphertexts and 1184-byte public keys against 32 to 65 bytes for the curves.
+- ML-DSA is fast enough (ML-DSA-44 signs in 64 ms on average) but needs a lot of stack: 51 KiB for ML-DSA-44 and 78 KiB for ML-DSA-65. ML-DSA-87 signing did not fit on this board.
+- Falcon-512 verifies in 5 ms but takes 1.7 s to generate a key. SPHINCS+ barely needs RAM but signs in 3.8 s (128f) or about 2 minutes (128s).
+- "PQC versus classical" depends on which classical library you compare against. Libsodium's X25519 and Ed25519 are 8 to 25 times faster than the mbedtls versions on this chip.
+- Energy is not measured, because the board has no current sensor.
+
+## Contents
+
+[Summary](#summary) · [Headline numbers](#headline-numbers) · [What did not fit](#what-did-not-fit) · [How I measured](#how-i-measured) · [Which classical code](#which-classical-code) · [Not measured: energy](#not-measured-energy) · [Limits](#limits-of-these-numbers) · [Related work](#related-work) · [Reproduce](#reproduce) · [Credits](#credits) · [Citation](#citation)
+
 ## Headline numbers
 
 Mean over the timed iterations, in ms (the plus/minus is the standard deviation, so it is mostly rejection-sampling noise for ML-DSA, Falcon and RSA keygen). Stack is the peak I measured by painting the stack, over the three operations. Sizes are bytes. The full tables, with n, min, max, heap and code size, are in `results/summary.md` and `results/summary.csv`.
@@ -76,6 +90,10 @@ Energy is not in this repo. My board has no current sensor, so I have no power o
 
 One board, one run of the full sweep, one compiler and optimisation level (-O3 for my files and PQClean; the precompiled mbedtls and libsodium are whatever the framework was built with). The spread I report is within a run, not between boards or temperatures. ML-KEM's spread is tiny because the code is constant-time and there is almost nothing else running; the RTOS tick and the serial driver on the other core are still there. Latency is not a protocol cost: nothing here includes serialising keys, a transport, or certificates. PQClean's `clean` code is not optimised for Xtensa, so the PQC numbers are an upper bound on what is achievable, not an estimate of it. The stack figure is specific to this code and compiler, and the worker task stack of 104 KiB is the ceiling for what I could test.
 
+## Related work
+
+PQC on the ESP32 has been measured before, so this is not a first. Espressif has published an [esp-pqc component](https://developer.espressif.com/blog/2026/10/esp32-post-quantum-cryptography/) with hybrid TLS and its own benchmarks, there is a [multicore ML-KEM implementation for the ESP32](https://sol.sbc.org.br/index.php/sbseg/article/view/36650), and [pqm4](https://github.com/mupq/pqm4) is the standard benchmark suite for the Cortex-M4. I did not read all of these closely, and I did not compare my numbers against theirs. What this repo adds is a small, reproducible measurement of one plain-C code base on one board, with stack, heap, flash and wire sizes next to the classical algorithms from the same toolchain, and the code to rerun it.
+
 ## Reproduce
 
 You need PlatformIO and a board on a Raspberry Pi (or any machine; the scripts assume my Pi, edit `PI` and the ssh options at the top of `sync_build.sh` and `run_bench.sh`), `pyserial` on that machine, and `pandas` and `matplotlib` locally for the tables.
@@ -93,3 +111,16 @@ The serial protocol is in the header comment of `firmware/src/main.cpp`; `host/b
 ## Credits
 
 The PQC code is PQClean (Kannwischer, Schwabe, Stebila, Wiggers), which collects the reference implementations of ML-KEM (Kyber), ML-DSA (Dilithium), Falcon and SPHINCS+ from their authors; see `PQCLEAN_README.md` and the licences in each scheme's directory. The classical code is mbedtls (Arm) and libsodium, both through the Espressif Arduino-ESP32 / ESP-IDF packages. None of that code is modified here.
+
+## Citation
+
+If you use the numbers or the harness:
+
+```
+@misc{pqc_microcontroller,
+  author = {ankushachwani},
+  title  = {PQC on an ESP32: latency, memory and size next to classical crypto},
+  year   = {2026},
+  howpublished = {\url{https://github.com/ankushachwani/pqc_microcontroller}}
+}
+```
