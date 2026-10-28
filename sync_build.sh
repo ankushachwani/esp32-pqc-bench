@@ -2,8 +2,8 @@
 # Run on the Mac: copy what the build needs to the Pi and compile there. No board access, so no lock.
 set -euo pipefail
 cd "$(dirname "$0")"
-PI="${PI:-ankushachwani@10.0.0.201}"
-SSH="ssh -o BatchMode=yes -o HostKeyAlias=pi.local"
+PI="${PI:?set PI=user@host of the machine the ESP32 is plugged into}"
+SSH="ssh -o BatchMode=yes ${SSH_OPTS:-}"
 rsync -a --delete -e "$SSH" --exclude .pio --exclude .git \
     --include 'firmware/***' --include 'host/***' --include 'common/***' \
     --include 'crypto_kem/' --include 'crypto_kem/ml-kem-*/***' \

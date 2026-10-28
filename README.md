@@ -1,6 +1,6 @@
 # PQC on an ESP32: latency, memory and size next to classical crypto
 
-This repo is a clone of [PQClean](https://github.com/PQClean/PQClean) with a benchmark added on top. I wanted to know what ML-KEM, ML-DSA, Falcon and SPHINCS+ actually cost on a small microcontroller, compared with the classical algorithms a device like this runs today (RSA-2048, ECDH P-256, X25519, ECDSA P-256, Ed25519). Everything below was measured on one ESP32-D0WD-V3 (Xtensa LX6, 240 MHz, no PSRAM). The upstream PQClean code is untouched. My work is in `firmware/`, `host/`, `analysis/` and `results/`, and the original README is now `PQCLEAN_README.md`.
+This repo is a fork of [PQClean](https://github.com/PQClean/PQClean) with a benchmark added on top. I wanted to know what ML-KEM, ML-DSA, Falcon and SPHINCS+ actually cost on a small microcontroller, compared with the classical algorithms a device like this runs today (RSA-2048, ECDH P-256, X25519, ECDSA P-256, Ed25519). Everything below was measured on one ESP32-D0WD-V3 (Xtensa LX6, 240 MHz, no PSRAM). The upstream PQClean code is untouched. My work is in `firmware/`, `host/`, `analysis/` and `results/`, and the original README is now `PQCLEAN_README.md`.
 
 PQClean is retired and archived (its README has the notice and points to mlkem-native, mldsa-native, slhdsa-c and liboqs for maintained code). I used it anyway because the `clean` C implementations are plain portable C with no assembly, which is what I wanted for a first, honest baseline on Xtensa. Anything I say about speed is about this C code compiled with gcc 8.4 at -O3. It says little about what a tuned ESP32 implementation could do.
 
@@ -96,7 +96,7 @@ PQC on the ESP32 has been measured before, so this is not a first. Espressif has
 
 ## Reproduce
 
-You need PlatformIO and a board on a Raspberry Pi (or any machine; the scripts assume my Pi, edit `PI` and the ssh options at the top of `sync_build.sh` and `run_bench.sh`), `pyserial` on that machine, and `pandas` and `matplotlib` locally for the tables.
+You need PlatformIO and a board on a Raspberry Pi (or any machine; set `PI=user@host` for the machine the board is plugged into; `sync_build.sh` and `run_bench.sh` use it, and `SSH_OPTS` adds ssh options), `pyserial` on that machine, and `pandas` and `matplotlib` locally for the tables.
 
 ```
 ./sync_build.sh                 # copy sources to the Pi and build there (no board access)
@@ -112,15 +112,19 @@ The serial protocol is in the header comment of `firmware/src/main.cpp`; `host/b
 
 The PQC code is PQClean (Kannwischer, Schwabe, Stebila, Wiggers), which collects the reference implementations of ML-KEM (Kyber), ML-DSA (Dilithium), Falcon and SPHINCS+ from their authors; see `PQCLEAN_README.md` and the licences in each scheme's directory. The classical code is mbedtls (Arm) and libsodium, both through the Espressif Arduino-ESP32 / ESP-IDF packages. None of that code is modified here.
 
+## Licence
+
+The code I added is MIT licensed (see `LICENSE`); the PQClean code keeps its own licences.
+
 ## Citation
 
 If you use the numbers or the harness:
 
 ```
-@misc{pqc_microcontroller,
+@misc{esp32_pqc_bench,
   author = {ankushachwani},
   title  = {PQC on an ESP32: latency, memory and size next to classical crypto},
   year   = {2026},
-  howpublished = {\url{https://github.com/ankushachwani/pqc_microcontroller}}
+  howpublished = {\url{https://github.com/ankushachwani/esp32-pqc-bench}}
 }
 ```

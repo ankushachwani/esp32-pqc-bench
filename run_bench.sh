@@ -3,8 +3,8 @@
 # Extra args go to host/run_bench.py (e.g. --quick --out /tmp/q).
 set -euo pipefail
 cd "$(dirname "$0")"
-PI="${PI:-ankushachwani@10.0.0.201}"
-SSH="ssh -o BatchMode=yes -o HostKeyAlias=pi.local"
+PI="${PI:?set PI=user@host of the machine the ESP32 is plugged into}"
+SSH="ssh -o BatchMode=yes ${SSH_OPTS:-}"
 ./sync_build.sh
 $SSH "$PI" "cd pqc_bench && mkdir -p results/raw logs && flock -w 3600 /usr/local/share/esp32.lock bash -c '
   (cd firmware && ~/.platformio/penv/bin/pio run -t upload --upload-port /dev/ttyUSB0 2>&1 | tail -2) &&
