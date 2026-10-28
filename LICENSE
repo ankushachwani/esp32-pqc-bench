@@ -19,8 +19,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
-Scope: this licence covers the files I added (firmware/, host/, analysis/,
-results/, run_bench.sh, sync_build.sh and README.md). The PQClean code
-(crypto_kem/, crypto_sign/, common/, test/) keeps the licences in its own
-directories, and the original PQClean README is PQCLEAN_README.md.
